@@ -1,6 +1,8 @@
-# Active Links JS
+# @mikinho/active-links
 
-![NPM Version](https://img.shields.io/npm/v/active-links?style=flat-square)
+Copyright (c) 2025 Michael Welter <me@mikinho.com>
+
+![NPM Version](https://img.shields.io/npm/v/@miknho/active-links?style=flat-square)
 ![GitHub Release](https://img.shields.io/github/v/release/mikinho/active-links?style=flat-square)
 ![File Size](https://img.shields.io/github/size/mikinho/active-links/dist/active-links.min.js?style=flat-square&label=minified%20size)
 ![License](https://img.shields.io/github/license/mikinho/active-links?style=flat-square)
@@ -17,14 +19,20 @@ A lightweight, high-performance script that automatically adds `is-active` and `
 ### Option 1: CDN (Easiest)
 Place this at the end of your `<body>` tag:
 
+#### jsdelivr
 ```html
-<script src="[https://cdn.jsdelivr.net/gh/mikinho/active-links@1.0.0/dist/active-links.min.js](https://cdn.jsdelivr.net/gh/mikinho/active-links@1.0.0/dist/active-links.min.js)" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/mikinho/active-links@latest/dist/active-links.min.js" defer></script>
+```
+
+#### unpkg
+```html
+<script src="https://unpkg.com/@mikinho/active-links@latest/dist/active-links.min.js" defer></script>
 ```
 
 ### Option 2: NPM
 
 ```bash
-npm install active-links
+npm install @mikinho/active-links
 ```
 
 #### Usage with Fastify
@@ -34,7 +42,7 @@ const path = require("node:path");
 const fastify = require("fastify")();
 
 fastify.register(require("@fastify/static"), {
-    root: path.join(__dirname, "node_modules/active-links/dist"),
+    root: path.join(__dirname, "node_modules/@mikinho/active-links/dist"),
     prefix: "/s/js/",
     decorateReply: false
 });
@@ -47,5 +55,5 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-app.use("/vendor/js", express.static(path.join(__dirname, "node_modules/active-links/dist")));
+app.use("/s/js", express.static(path.join(__dirname, "node_modules/@mikinho/active-links/dist")));
 ```

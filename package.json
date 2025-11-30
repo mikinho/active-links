@@ -1,5 +1,5 @@
 {
-    "name": "active-links",
+    "name": "@mikinho/active-links",
     "version": "1.0.0",
     "description": "High-performance active class toggling for modern browsers.",
     "main": "dist/active-links.js",
@@ -12,11 +12,14 @@
         "type": "git",
         "url": "git+https://github.com/mikinho/active-links.git"
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "keywords": [
         "navigation",
         "active-class",
         "performance",
-        "vanilla"
+        "vanilla-js"
     ],
     "author": "Michael Welter <me@mikinho.com>",
     "license": "MIT",

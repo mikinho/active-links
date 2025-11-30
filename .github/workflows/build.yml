@@ -1,0 +1,41 @@
+name: Build and Commit Dist
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'dist/**' # Prevents infinite loops if the action pushes back
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Create Dist Directory
+        run: mkdir -p dist
+
+      - name: Minify JavaScript
+        run: npx terser src/active-links.js -o dist/active-links.min.js --compress --mangle
+
+      - name: Copy Source to Dist
+        run: cp src/active-links.js dist/active-links.js
+
+      - name: Commit and Push Changes
+        # This step only runs if there are changes in the dist folder
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update minified distribution files [skip ci]"
+          file_pattern: 'dist/*'
