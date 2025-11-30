@@ -2,7 +2,7 @@
 
 Copyright (c) 2025 Michael Welter <me@mikinho.com>
 
-![NPM Version](https://img.shields.io/npm/v/@miknho/active-links?style=flat-square)
+[![NPM Version](https://img.shields.io/npm/v/@mikinho/active-links.svg)](https://www.npmjs.com/package/@mikinho/active-links)
 ![GitHub Release](https://img.shields.io/github/v/release/mikinho/active-links?style=flat-square)
 ![File Size](https://img.shields.io/github/size/mikinho/active-links/dist/active-links.min.js?style=flat-square&label=minified%20size)
 ![License](https://img.shields.io/github/license/mikinho/active-links?style=flat-square)
