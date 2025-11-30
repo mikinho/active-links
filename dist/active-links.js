@@ -4,14 +4,14 @@
  *
  * @copyright 2025 Michael Welter <me@mikinho.com>
  * @license MIT
- * @version 1.0.4
+ * @version 1.0.5
  */
 
 (function () {
     "use strict";
 
     // This string will be replaced by the GitHub Action
-    const VERSION = "1.0.4";
+    const VERSION = "1.0.5";
 
     const CONFIG = {
         version: VERSION, 
