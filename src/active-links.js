@@ -4,13 +4,17 @@
  *
  * @copyright 2025 Michael Welter <me@mikinho.com>
  * @license MIT
- * @version 1.0.2
+ * @version __VERSION__
  */
 
 (function () {
     "use strict";
 
+    // This string will be replaced by the GitHub Action
+    const VERSION = "__VERSION__";
+
     const CONFIG = {
+        version: VERSION, 
         ancestorClass: "is-ancestor",
         activeClass: "is-active",
         ignoredParams: [

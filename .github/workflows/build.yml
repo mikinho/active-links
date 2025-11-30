@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'dist/**' # Prevents infinite loops if the action pushes back
+      - 'dist/**'
 
 permissions:
   contents: write
@@ -27,15 +27,27 @@ jobs:
       - name: Create Dist Directory
         run: mkdir -p dist
 
-      - name: Minify JavaScript
-        run: npx terser src/active-links.js -o dist/active-links.min.js --compress --mangle
-
+      # Copy source to dist
       - name: Copy Source to Dist
         run: cp src/active-links.js dist/active-links.js
 
+      # Inject Version into the DIST file
+      - name: Inject Version
+        run: |
+          # Extract version from package.json using Node
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          
+          echo "Injecting version $PACKAGE_VERSION into dist/active-links.js"
+          
+          # Replace placeholder. We use s|...|...|g to avoid issues if version has slashes
+          sed -i "s|__VERSION__|$PACKAGE_VERSION|g" dist/active-links.js
+
+      # Minify the (now versioned) file
+      - name: Minify JavaScript
+        run: npx terser dist/active-links.js -o dist/active-links.min.js --compress --mangle
+
       - name: Commit and Push Changes
-        # This step only runs if there are changes in the dist folder
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update minified distribution files [skip ci]"
+          commit_message: "chore: update distribution files [skip ci]"
           file_pattern: 'dist/*'
