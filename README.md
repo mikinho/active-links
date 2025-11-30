@@ -62,11 +62,7 @@ app.use("/s/js", express.static(path.join(__dirname, "node_modules/@mikinho/acti
 ## Publishing
 
 ```bash
-npm version patch --no-git-tag-version
 git commit -sam "Blah blah blah"
-git push
-# pause to allow GitHub action to run
-git pull
-git tag v$(npm pkg get version --workspaces=false | tr -d \")
+npm version patch
 git push --tags
 ```
