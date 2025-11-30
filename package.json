@@ -6,7 +6,10 @@
     "unpkg": "dist/active-links.min.js",
     "jsdelivr": "dist/active-links.min.js",
     "scripts": {
-        "build": "npx terser src/active-links.js -o dist/active-links.min.js --compress --mangle"
+        "build:version": "node scripts/build.js",
+        "build:terser": "npx terser dist/active-links.js -o dist/active-links.min.js --compress --mangle",
+        "build": "npm run build:version && npm run build:terser",
+        "version": "npm run build && git add dist"
     },
     "repository": {
         "type": "git",
@@ -26,5 +29,8 @@
     "bugs": {
         "url": "https://github.com/mikinho/active-links/issues"
     },
-    "homepage": "https://github.com/mikinho/active-links#readme"
+    "homepage": "https://github.com/mikinho/active-links#readme",
+    "devDependencies": {
+        "terser": "^5.44.1"
+    }
 }
