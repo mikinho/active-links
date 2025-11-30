@@ -62,8 +62,8 @@ app.use("/s/js", express.static(path.join(__dirname, "node_modules/@mikinho/acti
 ## Publishing
 
 ```bash
-git commit -sam "Blah blah blah"
 npm version patch --no-git-tag-version
+git commit -sam "Blah blah blah"
 git push
 # pause to allow GitHub action to run
 git pull
