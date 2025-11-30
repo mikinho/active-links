@@ -1,0 +1,27 @@
+{
+    "name": "active-links",
+    "version": "1.0.0",
+    "description": "High-performance active class toggling for modern browsers.",
+    "main": "dist/active-links.js",
+    "unpkg": "dist/active-links.min.js",
+    "jsdelivr": "dist/active-links.min.js",
+    "scripts": {
+        "build": "npx terser src/active-links.js -o dist/active-links.min.js --compress --mangle"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mikinho/active-links.git"
+    },
+    "keywords": [
+        "navigation",
+        "active-class",
+        "performance",
+        "vanilla"
+    ],
+    "author": "Michael Welter <me@mikinho.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mikinho/active-links/issues"
+    },
+    "homepage": "https://github.com/mikinho/active-links#readme"
+}
