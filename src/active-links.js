@@ -4,7 +4,7 @@
  *
  * @copyright 2025 Michael Welter <me@mikinho.com>
  * @license MIT
- * @version 1.0.0
+ * @version 1.0.2
  */
 
 (function () {
