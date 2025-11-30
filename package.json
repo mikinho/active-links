@@ -19,10 +19,18 @@
         "access": "public"
     },
     "keywords": [
-        "navigation",
+        "active-link",
+        "navigation-menu",
+        "highlight-current-page",
+        "router-link",
+        "nav-highlight",
+        "menu-active-state",
+        "url-matching",
         "active-class",
-        "performance",
-        "vanilla-js"
+        "link-highlighter",
+        "vanilla-js",
+        "no-dependencies",
+        "dom-manipulation"
     ],
     "author": "Michael Welter <me@mikinho.com>",
     "license": "MIT",
@@ -31,6 +39,7 @@
     },
     "homepage": "https://github.com/mikinho/active-links#readme",
     "devDependencies": {
+        "serve": "^14.2.5",
         "terser": "^5.44.1"
     }
 }

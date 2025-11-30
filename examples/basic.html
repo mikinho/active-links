@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Links Demo</title>
+    <style>
+        /* Basic Reset & Typography */
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        /* Navigation Styling */
+        nav ul { list-style: none; padding: 0; display: flex; gap: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        nav a { text-decoration: none; color: #555; padding: 5px 10px; border-radius: 4px; transition: all 0.2s; }
+        nav a:hover { background: #f0f0f0; }
+
+        /* Ancestor: The path matches (e.g., "Products" when viewing "Products > Shoes") */
+        .is-ancestor {
+            border-bottom: 2px solid orange;
+            color: orange;
+        }
+
+        /* Active: The exact URL matches */
+        .is-active {
+            background-color: #007bff;
+            color: white !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Active Links JS Demo</h1>
+        <p>Click the links below to reload the page and watch the highlighting change.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="./basic.html">Demo Home</a></li>
+
+            <li><a href="./basic-1.html">Category 1 (Sorted)</a></li>
+
+            <li><a href="./basic.html?utm_source=blah">Marketing Link</a></li>
+
+            <li><a href="./basic-2.html">Blah Blah Blah Link</a></li>
+
+            <li><a href="./">Examples Folder</a></li>
+            
+            <li><a href="https://google.com">External</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>How to test this:</h2>
+            <ol>
+                <li>Click <strong>"Category 1"</strong>. The page reloads, and that link turns Blue (Active).</li>
+                <li>Click <strong>"Marketing Link"</strong>. The URL changes, but the script knows to ignore `utm_source`, so "Demo Home" stays Blue.</li>
+                <li>The <strong>"Examples Folder"</strong> link should have an Orange underline (Ancestor) because this file is inside that folder.</li>
+            </ol>
+            <p>
+                <em>Note: For the most accurate testing, run this via a local server (like `npx serve --symlinks` or VS Code Live Server) rather than opening the file directly, as file:// protocols can behave strangely with `window.location.origin`.</em>
+            </p>
+        </section>
+    </main>
+
+    <script src="../dist/active-links.min.js"></script>
+</body>
+</html>
