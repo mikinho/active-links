@@ -1,6 +1,6 @@
 {
     "name": "@mikinho/active-links",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "High-performance active class toggling for modern browsers.",
     "main": "dist/active-links.js",
     "unpkg": "dist/active-links.min.js",
