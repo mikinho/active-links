@@ -10,6 +10,7 @@ Copyright (c) 2025 Michael Welter <me@mikinho.com>
 A lightweight, high-performance script that automatically adds `is-active` and `is-ancestor` classes to your navigation links.
 
 ## Features
+
 * **Fast**: Uses `document.links`, cached loops, and skips non-HTTP protocols.
 * **Smart**: Handles query strings (`?a=1&b=2` == `?b=2&a=1`) and normalizes trailing slashes.
 * **Zero Dependencies**: Drop it in and it works.
@@ -56,4 +57,16 @@ const app = express();
 const path = require("path");
 
 app.use("/s/js", express.static(path.join(__dirname, "node_modules/@mikinho/active-links/dist")));
+```
+
+## Publishing
+
+```bash
+git commit -sam "Blah blah blah"
+npm version patch --no-git-tag-version
+git push
+# pause to allow GitHub action to run
+git pull
+git tag v$(npm pkg get version --workspaces=false | tr -d \")
+git push --tags
 ```
