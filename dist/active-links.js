@@ -4,14 +4,14 @@
  *
  * @copyright 2025 Michael Welter <me@mikinho.com>
  * @license MIT
- * @version 1.0.6
+ * @version 1.0.7
  */
 
 (function () {
     "use strict";
 
     // This string will be replaced by the GitHub Action
-    const VERSION = "1.0.6";
+    const VERSION = "1.0.7";
 
     const CONFIG = {
         version: VERSION, 
@@ -49,7 +49,7 @@
             if (url.search) {
                 const params = url.searchParams;
                 // Remove ignored params
-                for (let i = 0; i < CONFIG.ignoredParams.length; i++) {
+                for (let i = 0; i < CONFIG.ignoredParams.length; ++i) {
                     params.delete(CONFIG.ignoredParams[i]);
                 }
                 // Sort for consistency
@@ -62,7 +62,27 @@
         }
     }
 
+    /**
+     * Removes active/ancestor classes from ALL elements.
+     * efficient: Only touches elements that actually have the class.
+     */
+    function removeActiveClasses() {
+        const selector = `.${CONFIG.activeClass}, .${CONFIG.ancestorClass}`;
+        const activeElements = document.querySelectorAll(selector);
+        
+        for (let i = 0; i < activeElements.length; ++i) {
+            activeElements[i].classList.remove(CONFIG.activeClass, CONFIG.ancestorClass);
+        }
+    }
+
+    /**
+     * Where the magic happens. Iterate over links and add 
+     * classes for active and ancestor links
+     */
     function setActiveClasses() {
+        // Clean up old state first
+        removeActiveClasses();
+
         const loc = window.location;
         const currentOrigin = loc.origin;
         
@@ -111,9 +131,35 @@
         }
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", setActiveClasses);
-    } else {
-        setActiveClasses();
+    /**
+     * Initialize listeners and Monkey Patch History API
+     * so we detect SPA navigation (React, Vue, Next.js, etc.)
+     */
+    function init() {
+        // Run on initial load
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", setActiveClasses);
+        } else {
+            setActiveClasses();
+        }
+
+        // Listen for Back/Forward button clicks
+        window.addEventListener("popstate", setActiveClasses);
+
+        // Monkey patch pushState and replaceState
+        const originalPushState = history.pushState;
+        history.pushState = function () {
+            originalPushState.apply(this, arguments);
+            setTimeout(setActiveClasses, 0);
+        };
+
+        const originalReplaceState = history.replaceState;
+        history.replaceState = function () {
+            originalReplaceState.apply(this, arguments);
+            setTimeout(setActiveClasses, 0);
+        };
     }
+
+    // Start the engine
+    init();
 })();
